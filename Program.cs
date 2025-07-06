@@ -1,16 +1,18 @@
-﻿using OOP_Principles.Encapsulation;
+﻿using OOP_Principles.Abstraction;
 
 
 
+BadEmailService badEmailService = new BadEmailService();
+badEmailService.Connect();
+badEmailService.Authenticate();
+badEmailService.SendEmail("Please provide me access to the students panel.");
+badEmailService.Disconnect();
 
-BankAccount mohamedBankAccount = new BankAccount(100);
+Console.WriteLine("-------");
 
-mohamedBankAccount.Deposit(20);
-Console.WriteLine(mohamedBankAccount.GetBalance());
 
-mohamedBankAccount.Deposit(100);
-Console.WriteLine(mohamedBankAccount.GetBalance());
+// Abstraction
+EmailService emailService = new EmailService();
+emailService.SendEmail("Please provide me access to the students panel.");
 
-mohamedBankAccount.Withdraw(50);
-Console.WriteLine(mohamedBankAccount.GetBalance());
 
