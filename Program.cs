@@ -1,5 +1,6 @@
 ﻿using OOP_Principles.Abstraction;
 using OOP_Principles.Inheritance;
+using OOP_Principles.Polymorphism;
 
 void AbstractionClient()
 {
@@ -54,3 +55,51 @@ void InheritanceClient()
 
 
 
+
+// Without Polymorphism
+
+List<object> objects = new List<object>();
+objects.Add(new Animal("Animal", 2));
+objects.Add(new Cat("Sally", 1));
+objects.Add(new Dog("Husky", 3));
+
+foreach (var _obj in objects)
+{
+    // Problem
+    //_obj.Eat();         // gives an error
+    //_obj.MakeSound();   // gives an error
+    
+    // Solution
+    if(_obj is Cat)
+    {
+        var cat = (Cat)_obj;
+        cat.Eat();
+        cat.MakeSound();
+    }
+    else if(_obj is Dog)
+    {
+        var dog = (Dog)_obj;
+        dog.Eat();
+        dog.MakeSound();
+    }
+    // else if ...
+    // you have to continue modifying this class whenever you add a new class
+    // and this violates open-closed principle
+    Console.WriteLine("----");
+}
+
+Console.WriteLine("\n\n\n");
+
+
+// With Polymorphism => treating objects the same way
+
+List<Animal> animals = new List<Animal>();
+animals.Add(new Cat("Sally", 1));
+animals.Add(new Dog("Husky", 3));
+
+foreach (var animal in animals)
+{
+    animal.Eat();
+    animal.MakeSound();
+    Console.WriteLine("----");
+}
